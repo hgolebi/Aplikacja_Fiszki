@@ -1,1 +1,8 @@
 /bin/
+.classpath
+.gitignore
+.project
+build.fxbuild
+Fishes.iml
+PAP-fishes.iml
+/.idea
