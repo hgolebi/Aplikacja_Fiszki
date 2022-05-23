@@ -40,8 +40,8 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 //		 Stage stage = new Stage();
 //
-//		String fileName = "/water.mp3";
-//		playMusic(fileName);
+		String fileName = "/water.mp3";
+		playMusic(fileName);
 //		muzyka
 //		 setting an icon of the program
 		Image icon = new Image("FISH.png");
