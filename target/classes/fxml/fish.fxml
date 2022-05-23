@@ -11,10 +11,13 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.Media?>
+<?import javafx.scene.media.MediaPlayer?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<GridPane minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pap.fishes.papfishes.FishesScreenController">
+<GridPane minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pap.fishes.papfishes.Main">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -71,7 +74,16 @@
             <Button id="kategoria" layoutX="32.0" layoutY="231.0" mnemonicParsing="false" stylesheets="@../fish.css" text="Kategoria 2" />
             <Button id="kategoria" layoutX="32.0" layoutY="269.0" mnemonicParsing="false" stylesheets="@../fish.css" text="Kategoria 3" />
             <Region prefHeight="200.0" prefWidth="200.0" />
-            <ToggleButton alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#OnMusicButtonClicked" stylesheets="@../fish.css" text="Muzyka" />
+            <ToggleButton fx:id="Music" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#OnMusicButtonClicked" stylesheets="@../fish.css" text="Muzyka" />
+            <MediaView fitHeight="50.0" fitWidth="50.0">
+               <mediaPlayer>
+                  <MediaPlayer fx:id="player">
+                     <media>
+                        <Media source="@../water.mp3" />
+                     </media>
+                  </MediaPlayer>
+               </mediaPlayer>
+            </MediaView>
          </children></VBox>
    </children>
 </GridPane>

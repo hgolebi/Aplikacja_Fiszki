@@ -1,12 +1,15 @@
 package com.pap.fishes.papfishes;
 	
 import java.io.File;
+import javafx.fxml.FXML;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -22,7 +25,9 @@ import javafx.scene.text.Text;
 
 
 public class Main extends Application {
-	
+
+	@FXML
+	MediaPlayer player;
 	MediaPlayer mediaPlayer;
 	public void playMusic(String fileName) {
 		String path = getClass().getResource(fileName).getPath();
@@ -40,8 +45,8 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 //		 Stage stage = new Stage();
 //
-		String fileName = "/water.mp3";
-		playMusic(fileName);
+//		String fileName = "/water.mp3";
+//		playMusic(fileName);
 //		muzyka
 //		 setting an icon of the program
 		Image icon = new Image("FISH.png");
@@ -59,6 +64,7 @@ public class Main extends Application {
 		//TO JEST TWOJA SCENA BARTEK, do tej sceny sie dostajemy przyciskiem z pierwszej sceny
 		GridPane playScene = FXMLLoader.load(getClass().getResource("/fxml/fish.fxml"));
 		Scene scene2 = new Scene(playScene);
+
 
 
 		
@@ -119,12 +125,6 @@ public class Main extends Application {
             public void handle(ActionEvent e)
             {
                 stage.setScene(scene2);
-                
-                stage.setMaxWidth(900);
-        		stage.setMaxHeight(900);
-        		
-        		stage.setMinWidth(500);
-        		stage.setMinHeight(600);
             }
         };
         
@@ -169,4 +169,22 @@ public class Main extends Application {
 		stage.show();
 
 	}
+
+	@FXML
+	private Label Title;
+	@FXML
+	private ToggleButton Music;
+
+	@FXML
+	void OnMusicButtonClicked() {
+		if(Music.isSelected()) {
+			Title.setText("gra muzyka");
+			player.play();
+		}
+		else {
+			Title.setText("nie gra muzyka");
+			player.stop();
+		}
+	}
+
 }
