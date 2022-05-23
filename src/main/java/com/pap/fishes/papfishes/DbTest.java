@@ -7,7 +7,7 @@ public class DbTest {
     public static void main(String[] args) {
         String data = null;
         try {
-            ResultSet result = QuerySender.select("SELECT * FROM testowa");
+            ResultSet result = QuerySender.select("SELECT * FROM fishes");
             result.next();
             data = result.getString(2);
         } catch (SQLException e) {

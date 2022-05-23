@@ -1,12 +1,15 @@
 package com.pap.fishes.papfishes;
 	
 import java.io.File;
+import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -22,14 +25,27 @@ import javafx.scene.text.Text;
 
 
 public class Main extends Application {
-	
+
+	private static MediaPlayer  mp;
+
+
+	public static void muteMusic()
+	{
+		if(mp.isMute()){
+			mp.setMute(false);
+		}
+		else {
+			mp.setMute(true);
+		}
+	}
+
 	MediaPlayer mediaPlayer;
-	public void playMusic(String fileName) {
-		String path = getClass().getResource(fileName).getPath();
-		Media media = new Media(new File(path).toURI().toString());
+	public MediaPlayer getMediaPlayer(String fileName) {
+
+		Media media = new Media(getClass().getResource(fileName).toExternalForm());
 		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-		mediaPlayer.play();
+		return mediaPlayer;
 	}
 	
 	public static void main(String[] args) {
@@ -41,7 +57,8 @@ public class Main extends Application {
 //		 Stage stage = new Stage();
 //
 		String fileName = "/water.mp3";
-		playMusic(fileName);
+		mp = getMediaPlayer(fileName);
+		mp.play();
 //		muzyka
 //		 setting an icon of the program
 		Image icon = new Image("FISH.png");
@@ -57,8 +74,8 @@ public class Main extends Application {
 		scene1.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 		
 		//TO JEST TWOJA SCENA BARTEK, do tej sceny sie dostajemy przyciskiem z pierwszej sceny
-		GridPane playScene = FXMLLoader.load(getClass().getResource("/fxml/fish.fxml"));
-		Scene scene2 = new Scene(playScene);
+//		GridPane playScene = FXMLLoader.load(getClass().getResource("/fxml/fish.fxml"));
+//		Scene scene2 = new Scene(playScene);
 
 
 		
@@ -118,17 +135,24 @@ public class Main extends Application {
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
-                stage.setScene(scene2);
-                
-                stage.setMaxWidth(900);
-        		stage.setMaxHeight(900);
-        		
-        		stage.setMinWidth(500);
-        		stage.setMinHeight(600);
-            }
+//                stage.setScene(scene2);
+//
+//                stage.setMaxWidth(900);
+//        		stage.setMaxHeight(900);
+//
+//        		stage.setMinWidth(500);
+//        		stage.setMinHeight(600);
+				FishesScreenController fsc = new FishesScreenController();
+				try {
+					fsc.switchScene(e);
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				}
+			}
         };
-        
+
         btn1.setOnAction(event);
+
         
 		VBox TopBox = new VBox();
 		HBox BottomBox = new HBox();
@@ -169,4 +193,5 @@ public class Main extends Application {
 		stage.show();
 
 	}
+
 }
