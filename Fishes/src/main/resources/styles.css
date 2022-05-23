@@ -1,0 +1,6 @@
+#custombutton {
+	-fx-background-color: #FFFF88; 
+	-fx-text-fill: #9999FF;  
+	-fx-border-color: black;
+	-fx-border-width: 3 3 3 3;
+}

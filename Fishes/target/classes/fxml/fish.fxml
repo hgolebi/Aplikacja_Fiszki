@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<GridPane minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pap.fishes.papfishes.Main">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Line endY="400.0" GridPane.columnIndex="4" GridPane.vgrow="ALWAYS" />
+      <VBox alignment="CENTER" prefWidth="400.0" spacing="20.0" GridPane.columnSpan="4">
+          <padding>
+              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+          </padding>
+         <HBox alignment="CENTER" style="-fx-background-color: CCE5FF;">
+            <children>
+               <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+               <Label text="FISHES">
+                  <font>
+                     <Font size="30.0" />
+                  </font></Label>
+               <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+            </children>
+         </HBox>
+          <Button id="fiszka" stylesheets="@../../classes/fish.css">
+            <graphic>
+               <VBox alignment="CENTER" styleClass="fiszka" stylesheets="@../../classes/fish.css">
+                  <children>
+                     <Label text="SŁOWO" textAlignment="CENTER">
+                        <font>
+                           <Font size="50.0" />
+                        </font>
+                     </Label>
+                     <Label text="kategoria" textAlignment="CENTER">
+                        <font>
+                           <Font size="20.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </VBox>
+            </graphic></Button>
+          <Button id="ucz" stylesheets="@../../classes/fish.css" text="UCZ SIĘ" />
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="4">
+         <children>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <Button id="menu" layoutX="44.0" layoutY="164.0" mnemonicParsing="false" stylesheets="@../../classes/fish.css" text="Edytuj" />
+            <Button id="menu" layoutX="44.0" layoutY="244.0" mnemonicParsing="false" stylesheets="@../../classes/fish.css" text="Wyszukaj" />
+            <Button id="menu" mnemonicParsing="false" stylesheets="@../../classes/fish.css" text="Dodaj" />
+            <Label text="Szybkie Menu" />
+            <Button id="kategoria" mnemonicParsing="false" stylesheets="@../../classes/fish.css" text="Kategoria 1" />
+            <Button id="kategoria" layoutX="32.0" layoutY="231.0" mnemonicParsing="false" stylesheets="@../../classes/fish.css" text="Kategoria 2" />
+            <Button id="kategoria" layoutX="32.0" layoutY="269.0" mnemonicParsing="false" stylesheets="@../../classes/fish.css" text="Kategoria 3" />
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <ToggleButton alignment="BOTTOM_CENTER" mnemonicParsing="false" stylesheets="@../../classes/fish.css" text="Muzyka" />
+         </children></VBox>
+   </children>
+</GridPane>
