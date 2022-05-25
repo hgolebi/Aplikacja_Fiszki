@@ -1,27 +1,27 @@
 package com.pap.fishes.papfishes;
-	
-import java.io.File;
-import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.Objects;
 
 
 public class Main extends Application {
@@ -31,18 +31,13 @@ public class Main extends Application {
 
 	public static void muteMusic()
 	{
-		if(mp.isMute()){
-			mp.setMute(false);
-		}
-		else {
-			mp.setMute(true);
-		}
+		mp.setMute(!mp.isMute());
 	}
 
 	MediaPlayer mediaPlayer;
 	public MediaPlayer getMediaPlayer(String fileName) {
 
-		Media media = new Media(getClass().getResource(fileName).toExternalForm());
+		Media media = new Media(Objects.requireNonNull(getClass().getResource(fileName)).toExternalForm());
 		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		return mediaPlayer;
@@ -53,7 +48,7 @@ public class Main extends Application {
 	}
 
 	@Override
-	public void start(Stage stage) throws Exception {
+	public void start(Stage stage) {
 //		 Stage stage = new Stage();
 //
 		String fileName = "/water.mp3";
@@ -71,7 +66,7 @@ public class Main extends Application {
 		StackPane stackPane = new StackPane();
 		Scene scene1 = new Scene(stackPane, 600, 600, Color.WHITE);
 		
-		scene1.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+		scene1.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm());
 		
 		//TO JEST TWOJA SCENA BARTEK, do tej sceny sie dostajemy przyciskiem z pierwszej sceny
 //		GridPane playScene = FXMLLoader.load(getClass().getResource("/fxml/fish.fxml"));
@@ -132,9 +127,7 @@ public class Main extends Application {
 		btn1.setId("custombutton");
 		// btn1.setOnAction(e -> stage.setScene(scene2)); // zmiana sceny przyciskiem!!!!!
 		
-		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e)
-            {
+		EventHandler<ActionEvent> event = e -> {
 //                stage.setScene(scene2);
 //
 //                stage.setMaxWidth(900);
@@ -142,14 +135,13 @@ public class Main extends Application {
 //
 //        		stage.setMinWidth(500);
 //        		stage.setMinHeight(600);
-				FishesScreenController fsc = new FishesScreenController();
-				try {
-					fsc.switchScene(e);
-				} catch (IOException ex) {
-					ex.printStackTrace();
-				}
+			FishesScreenController fsc = new FishesScreenController();
+			try {
+				fsc.switchScene(e);
+			} catch (IOException ex) {
+				ex.printStackTrace();
 			}
-        };
+		};
 
         btn1.setOnAction(event);
 
