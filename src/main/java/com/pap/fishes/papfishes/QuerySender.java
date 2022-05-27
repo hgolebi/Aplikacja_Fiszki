@@ -21,9 +21,7 @@ public class QuerySender {
         Vector<Fish> vec = new Vector<>();
         try {
             ResultSet result = QuerySender.select("SELECT * FROM Fishes");
-            while (!result.isLast()) {
-
-                result.next();
+            while (result.next()) {
                 int id = result.getInt(1);
                 String term = result.getString(2);
                 String definition = result.getString(3);
@@ -40,8 +38,7 @@ public class QuerySender {
         Vector<Fish> vec = new Vector<>();
         try {
             ResultSet result = QuerySender.select("SELECT * FROM Fishes WHERE category = \"" + category + "\"");
-            while (!result.isLast()) {
-                result.next();
+            while (result.next()) {
                 int id = result.getInt(1);
                 String term = result.getString(2);
                 String definition = result.getString(3);
@@ -56,8 +53,7 @@ public class QuerySender {
         Vector<Fish> vec = new Vector<>();
         try {
             ResultSet result = QuerySender.select("SELECT * FROM Fishes WHERE term = \"" + term + "\"");
-            while (!result.isLast()) {
-                result.next();
+            while (result.next()) {
                 int id = result.getInt(1);
                 String definition = result.getString(3);
                 String category = result.getString(4);
