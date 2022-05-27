@@ -24,15 +24,20 @@ public class FishesScreenController {
     Button ucz_sie_button;
     @FXML
     ToggleButton fish_button;
+    @FXML
+    Button right_swipe_button;
+    @FXML
+    Button left_swipe_button;
+
     private Stage stage;
     private Scene scene;
     private Parent root;
     Fish currentFish;
-    Vector<Fish> fishList;
+    FishList fishList;
 
     public FishesScreenController(){
-        fishList = QuerySender.getAllFishes();
-
+        fishList = new FishList(QuerySender.getAllFishes());
+        currentFish = null;
     }
 
     public void switchScene(ActionEvent event) throws IOException {
@@ -42,18 +47,10 @@ public class FishesScreenController {
         stage.setScene(scene);
         stage.show();
     }
-    public void OnMusicButtonClicked(){
-        Main.muteMusic();
-    }
-    public void OnUczSieButtonClicked(){
+
+    public void displayFishFront(){
         String term;
         String category;
-        if (!fishList.isEmpty()) {
-            currentFish = fishList.get(0);
-        }
-        else
-            currentFish = null;
-
         if (currentFish == null){
             term = "BRAK FISZEK";
             category = "Dodaj fiszki uzywajac przycisku DODAJ";
@@ -64,19 +61,54 @@ public class FishesScreenController {
         }
         term_label.setText(term);
         category_label.setText(category);
-//        ucz_sie_button.cancelButtonProperty();
+        if (fish_button.isSelected())
+            fish_button.setSelected(false);
+    }
+    public void displayFishBack(){
+        String definition;
+        String category;
+        if (currentFish == null){
+            definition = "BRAK FISZEK";
+            category = "Dodaj fiszki uzywajac przycisku DODAJ";
+        }
+        else {
+            definition = currentFish.getDefinition();
+            category = currentFish.getCategory();
+        }
+        term_label.setText(definition);
+        category_label.setText(category);
+        if (!fish_button.isSelected())
+            fish_button.setSelected(true);
+    }
+
+    public void OnMusicButtonClicked(){
+        Main.muteMusic();
+    }
+    public void OnUczSieButtonClicked(){
+        if (!fishList.isEmpty()) {
+            currentFish = fishList.getCurrentFish();
+        }
+        displayFishFront();
         ucz_sie_button.setVisible(false);
+        left_swipe_button.setVisible(true);
+        right_swipe_button.setVisible(true);
     }
     public void OnFishButtonClicked(){
         if (!(currentFish == null)){
-            if(fish_button.isSelected()){
-                String term = currentFish.getTerm();
-                term_label.setText(term);
+            if(!fish_button.isSelected()){
+                displayFishFront();
             }
             else {
-                String definition = currentFish.getDefinition();
-                term_label.setText(definition);
+                displayFishBack();
             }
         }
+    }
+    public void OnLeftSwipeClicked(){
+        currentFish =  fishList.getPreviousFish();
+        displayFishFront();
+    }
+    public void OnRightSwipeClicked(){
+        currentFish = fishList.getNextFish();
+        displayFishFront();
     }
 }
