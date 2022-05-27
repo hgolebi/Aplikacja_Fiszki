@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class FishesScreenController {
     @FXML
     Button ucz_sie_button;
     @FXML
-    Button fish_button;
+    ToggleButton fish_button;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -68,8 +69,14 @@ public class FishesScreenController {
     }
     public void OnFishButtonClicked(){
         if (!(currentFish == null)){
-            String definition = currentFish.getDefinition();
-            term_label.setText(definition);
+            if(fish_button.isSelected()){
+                String term = currentFish.getTerm();
+                term_label.setText(term);
+            }
+            else {
+                String definition = currentFish.getDefinition();
+                term_label.setText(definition);
+            }
         }
     }
 }
