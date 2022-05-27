@@ -44,16 +44,16 @@
                <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
             </children>
          </HBox>
-          <Button id="fiszka" stylesheets="@../fish.css">
+          <Button id="fiszka" fx:id="fish_button" onAction="#OnFishButtonClicked" stylesheets="@../fish.css">
             <graphic>
                <VBox alignment="CENTER" styleClass="fiszka" stylesheets="@../fish.css">
                   <children>
-                     <Label text="SŁOWO" textAlignment="CENTER">
+                     <Label fx:id="term_label" text="SŁOWO" textAlignment="CENTER">
                         <font>
                            <Font size="50.0" />
                         </font>
                      </Label>
-                     <Label text="kategoria" textAlignment="CENTER">
+                     <Label fx:id="category_label" text="kategoria" textAlignment="CENTER">
                         <font>
                            <Font size="20.0" />
                         </font>
@@ -61,7 +61,7 @@
                   </children>
                </VBox>
             </graphic></Button>
-          <Button id="ucz" stylesheets="@../fish.css" text="UCZ SIĘ" />
+          <Button id="ucz" fx:id="ucz_sie_button" onAction="#OnUczSieButtonClicked" stylesheets="@../fish.css" text="UCZ SIĘ" />
       </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="4">
          <children>
