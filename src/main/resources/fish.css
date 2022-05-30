@@ -1,4 +1,4 @@
-#fiszka {
+    #fiszka {
 	-fx-background-color: #CCE5FF;
 	-fx-focus-color: black;
 	-fx-border-color: black;
@@ -32,6 +32,16 @@
 	-fx-border-width: 5;
 	-fx-padding: 10;
 
+}
+#powtorz {
+    -fx-background-color: #CCE5FF;
+	-fx-border-color: black;
+	-fx-border-width: 1;
+	-fx-padding: 5;
+	-fx-border-radius: 10;
+	-fx-background-radius: 10;
+	-fx-margin: 10;
+	-fx-min-width: 70;
 }
 
 .toggle-button {
