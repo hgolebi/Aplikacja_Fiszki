@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
@@ -28,6 +29,14 @@ public class FishesScreenController {
     Button right_swipe_button;
     @FXML
     Button left_swipe_button;
+    @FXML
+    CheckBox need_repeat_checkbox;
+    @FXML
+    Button repeat_button;
+    @FXML
+    Button back_button;
+    @FXML
+    Button shuffle_button;
 
     private Stage stage;
     private Scene scene;
@@ -45,6 +54,7 @@ public class FishesScreenController {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setMinHeight(950);
         stage.show();
     }
 
@@ -63,6 +73,7 @@ public class FishesScreenController {
         category_label.setText(category);
         if (fish_button.isSelected())
             fish_button.setSelected(false);
+        need_repeat_checkbox.setSelected(currentFish.isRepeat());
     }
     public void displayFishBack(){
         String definition;
@@ -79,19 +90,27 @@ public class FishesScreenController {
         category_label.setText(category);
         if (!fish_button.isSelected())
             fish_button.setSelected(true);
+        need_repeat_checkbox.setSelected(currentFish.isRepeat());
     }
+
 
     public void OnMusicButtonClicked(){
         Main.muteMusic();
     }
     public void OnUczSieButtonClicked(){
+
         if (!fishList.isEmpty()) {
             currentFish = fishList.getCurrentFish();
+
         }
         displayFishFront();
         ucz_sie_button.setVisible(false);
         left_swipe_button.setVisible(true);
         right_swipe_button.setVisible(true);
+        need_repeat_checkbox.setVisible(true);
+        repeat_button.setVisible(true);
+        shuffle_button.setVisible(true);
+
     }
     public void OnFishButtonClicked(){
         if (!(currentFish == null)){
@@ -109,6 +128,36 @@ public class FishesScreenController {
     }
     public void OnRightSwipeClicked(){
         currentFish = fishList.getNextFish();
+        displayFishFront();
+    }
+    public void OnRepeatCheckboxClicked(){
+
+        currentFish.changeRepeat();
+        repeat_button.setDisable(!fishList.isAnyRepeat());
+    }
+    public void OnRepeatButtonClicked(){
+        FishList repeatList = fishList.getRepeatList();
+        if (repeatList.isEmpty())
+            return;
+
+        fishList = fishList.getRepeatList();
+        currentFish = fishList.getCurrentFish();
+        displayFishFront();
+        fishList.setAllRepeat(false);
+        need_repeat_checkbox.setSelected(false);
+        back_button.setVisible(fishList.hasSourceList());
+    }
+    public void OnBackButtonClicked(){
+        fishList = fishList.getSourceList();
+        currentFish = fishList.getCurrentFish();
+        displayFishFront();
+        fishList.setAllRepeat(false);
+        need_repeat_checkbox.setSelected(false);
+        back_button.setVisible(fishList.hasSourceList());
+    }
+    public void OnShuffleButtonClicked(){
+        fishList.shuffle();
+        currentFish = fishList.getCurrentFish();
         displayFishFront();
     }
 }

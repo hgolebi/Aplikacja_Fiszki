@@ -5,12 +5,14 @@ public class Fish {
     private String term;
     private String definition;
     private String category;
+    private boolean repeat;
 
     public Fish(int f_id, String ter, String def, String cat){
         id = f_id;
         term = ter;
         definition = def;
         category = cat;
+        repeat = false;
     }
 
     public void print(){
@@ -42,5 +44,19 @@ public class Fish {
     }
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public void setRepeat(boolean repeat) {
+        this.repeat = repeat;
+    }
+
+    public boolean isRepeat() {
+        return repeat;
+    }
+    public void changeRepeat(){
+        if (repeat == true)
+            repeat = false;
+        else
+            repeat = true;
     }
 }

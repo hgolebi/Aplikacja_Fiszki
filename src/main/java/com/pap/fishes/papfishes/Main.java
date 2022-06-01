@@ -77,9 +77,9 @@ public class Main extends Application {
 		
 // FILL IN THE OPENING SCENE (moja)
 		
-		// stage.setResizable(false);
-		stage.setMaxWidth(800);
-		stage.setMaxHeight(800);
+		 stage.setResizable(true);
+		stage.setHeight(800);
+		stage.setWidth(800);
 		
 		stage.setMinWidth(500);
 		stage.setMinHeight(600);
