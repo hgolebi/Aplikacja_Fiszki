@@ -35,6 +35,8 @@ public class FishesScreenController {
     Button repeat_button;
     @FXML
     Button back_button;
+    @FXML
+    Button shuffle_button;
 
     private Stage stage;
     private Scene scene;
@@ -44,7 +46,6 @@ public class FishesScreenController {
 
     public FishesScreenController(){
         fishList = new FishList(QuerySender.getAllFishes());
-        fishList.shuffle();
         currentFish = null;
     }
 
@@ -53,6 +54,7 @@ public class FishesScreenController {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setMinHeight(950);
         stage.show();
     }
 
@@ -107,6 +109,7 @@ public class FishesScreenController {
         right_swipe_button.setVisible(true);
         need_repeat_checkbox.setVisible(true);
         repeat_button.setVisible(true);
+        shuffle_button.setVisible(true);
 
     }
     public void OnFishButtonClicked(){
@@ -151,5 +154,10 @@ public class FishesScreenController {
         fishList.setAllRepeat(false);
         need_repeat_checkbox.setSelected(false);
         back_button.setVisible(fishList.hasSourceList());
+    }
+    public void OnShuffleButtonClicked(){
+        fishList.shuffle();
+        currentFish = fishList.getCurrentFish();
+        displayFishFront();
     }
 }
