@@ -116,7 +116,7 @@
          <children>
             <Region prefHeight="200.0" prefWidth="200.0" />
             <Button id="menu" layoutX="44.0" layoutY="164.0" mnemonicParsing="false" stylesheets="@../fish.css" text="Edytuj" />
-            <Button id="menu" layoutX="44.0" layoutY="244.0" mnemonicParsing="false" stylesheets="@../fish.css" text="Wyszukaj" />
+            <Button id="menu" fx:id="search_button" layoutX="44.0" layoutY="244.0" mnemonicParsing="false" onAction="#OnSearchButtonClicked" stylesheets="@../fish.css" text="Wyszukaj" />
             <Button id="menu" mnemonicParsing="false" stylesheets="@../fish.css" text="Dodaj" />
             <Label text="Szybkie Menu" />
             <Button id="kategoria" mnemonicParsing="false" stylesheets="@../fish.css" text="Kategoria 1" />

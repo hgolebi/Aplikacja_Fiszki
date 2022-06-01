@@ -3,14 +3,17 @@ package com.pap.fishes.papfishes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.util.Vector;
@@ -37,12 +40,23 @@ public class FishesScreenController {
     Button back_button;
     @FXML
     Button shuffle_button;
+    @FXML
+    Button wyszukaj_button;
+    @FXML
+    Label no_fishes_found_label;
+    @FXML
+    TextField search_text_field;
+
 
     private Stage stage;
     private Scene scene;
     private Parent root;
     Fish currentFish;
     FishList fishList;
+
+    public Stage getStage() {
+        return stage;
+    }
 
     public FishesScreenController(){
         fishList = new FishList(QuerySender.getAllFishes());
@@ -159,5 +173,45 @@ public class FishesScreenController {
         fishList.shuffle();
         currentFish = fishList.getCurrentFish();
         displayFishFront();
+    }
+    public void OnSearchButtonClicked() throws IOException {
+
+        final Stage searchWindow = new Stage();
+        searchWindow.initModality(Modality.APPLICATION_MODAL);
+        searchWindow.initOwner(stage);
+        TextField textField = new TextField();
+        Label noFishesFoundLabel = new Label("Nie znaleziono żadnych fiszek");
+        noFishesFoundLabel.setTextFill(Paint.valueOf("#f80000"));
+        noFishesFoundLabel.setVisible(false);
+        Button button = new Button("WYSZUKAJ");
+        button.setId("menu");
+        button.setOnAction(event -> {
+            String text = textField.getText();
+            if (text == ""){
+                noFishesFoundLabel.setVisible(true);
+                return;
+            }
+            Vector<Fish> allFishes = QuerySender.findFishByTerm(text);
+            noFishesFoundLabel.setVisible(allFishes.isEmpty());
+            if (!allFishes.isEmpty()){
+                fishList = new FishList(allFishes);
+                currentFish = fishList.getCurrentFish();
+                displayFishFront();
+                searchWindow.close();
+            }
+        });
+        VBox searchVbox = new VBox();
+        searchVbox.getChildren().add(textField);
+        searchVbox.getChildren().add(noFishesFoundLabel);
+        searchVbox.getChildren().add(button);
+        searchVbox.setAlignment(Pos.CENTER);
+        Scene searchScene = new Scene(searchVbox, 400, 100);
+        searchScene.getStylesheets().add(getClass().getResource("/fish.css").toExternalForm());
+        searchWindow.setScene(searchScene);
+        searchWindow.show();
+    }
+    public void OnWyszukajButtonClicked() {
+
+
     }
 }
