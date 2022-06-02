@@ -49,6 +49,18 @@ public class QuerySender {
         }
         return vec;
     }
+    public static Vector<String> getAllCategories(){
+        Vector<String> vec = new Vector<>();
+        try {
+            ResultSet result = QuerySender.select("SELECT UNIQUE category FROM Fishes");
+            while (result.next()) {
+                vec.add(result.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return vec;
+    }
     public static Vector<Fish> findFishByTerm(String term){
         Vector<Fish> vec = new Vector<>();
         try {
@@ -63,5 +75,48 @@ public class QuerySender {
             e.printStackTrace();
         }
         return vec;
+    }
+
+    public static void addFish(String ter, String def, String cat){
+//        try {
+//            QuerySender.select("Insert INTO Fishes VALUES(NULL, \"" + ter + "\", \"" + def + "\", \"" + cat + "\", NULL)");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+        try {
+            Connection c = DbConnector.connect();
+            Statement s = c.createStatement();
+            s.executeUpdate("Insert INTO Fishes VALUES(NULL, \"" + ter + "\", \"" + def + "\", \"" + cat + "\")");
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public static void editFishTerm(String ter, String cat, String newTer) {
+        try {
+            Connection c = DbConnector.connect();
+            Statement s = c.createStatement();
+            s.executeUpdate("UPDATE Fishes SET term = \"" + newTer + "\" WHERE term = \"" + ter + "\" AND category = \"" + cat + "\"");
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+    public static void editFishDef(String ter, String cat, String newDef) {
+        try {
+            Connection c = DbConnector.connect();
+            Statement s = c.createStatement();
+            s.executeUpdate("UPDATE Fishes SET definition = \"" + newDef + "\" WHERE term = \"" + ter + "\" AND category = \"" + cat + "\"");
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+    public static void editFishCat(String ter, String cat, String newCat) {
+        try {
+            Connection c = DbConnector.connect();
+            Statement s = c.createStatement();
+            s.executeUpdate("UPDATE Fishes SET category = \"" + newCat + "\" WHERE term = \"" + ter + "\" AND category = \"" + cat + "\"");
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }

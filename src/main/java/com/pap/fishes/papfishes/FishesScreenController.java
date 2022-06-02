@@ -46,6 +46,12 @@ public class FishesScreenController {
     Label no_fishes_found_label;
     @FXML
     TextField search_text_field;
+    @FXML
+    Button quickCat1;
+    @FXML
+    Button quickCat2;
+    @FXML
+    Button quickCat3;
 
 
     private Stage stage;
@@ -53,6 +59,7 @@ public class FishesScreenController {
     private Parent root;
     Fish currentFish;
     FishList fishList;
+    Vector<String> currentCategories;
 
     public Stage getStage() {
         return stage;
@@ -213,5 +220,32 @@ public class FishesScreenController {
     public void OnWyszukajButtonClicked() {
 
 
+    }
+    public void OnEditButtonClicked(){
+        try {
+            final Stage searchWindow = new Stage();
+            searchWindow.initModality(Modality.APPLICATION_MODAL);
+            searchWindow.initOwner(stage);
+            VBox searchVbox = FXMLLoader.load(getClass().getResource("/fxml/fish_edit.fxml"));
+            Scene dialogScene = new Scene(searchVbox, 300, 200);
+            searchWindow.setScene(dialogScene);
+            searchWindow.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void OnAddButtonClicked(){
+        try {
+            final Stage searchWindow = new Stage();
+            searchWindow.initModality(Modality.APPLICATION_MODAL);
+            searchWindow.initOwner(stage);
+            VBox searchVbox = FXMLLoader.load(getClass().getResource("/fxml/fish_add.fxml"));
+            Scene dialogScene = new Scene(searchVbox, 300, 200);
+            searchWindow.setScene(dialogScene);
+            searchWindow.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

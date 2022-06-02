@@ -115,13 +115,17 @@
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="4">
          <children>
             <Region prefHeight="200.0" prefWidth="200.0" />
-            <Button id="menu" layoutX="44.0" layoutY="164.0" mnemonicParsing="false" stylesheets="@../fish.css" text="Edytuj" />
+            <Button id="menu" layoutX="44.0" layoutY="164.0" mnemonicParsing="false" onAction="#OnEditButtonClicked" stylesheets="@../fish.css" text="Edytuj" />
             <Button id="menu" fx:id="search_button" layoutX="44.0" layoutY="244.0" mnemonicParsing="false" onAction="#OnSearchButtonClicked" stylesheets="@../fish.css" text="Wyszukaj" />
-            <Button id="menu" mnemonicParsing="false" stylesheets="@../fish.css" text="Dodaj" />
-            <Label text="Szybkie Menu" />
-            <Button id="kategoria" mnemonicParsing="false" stylesheets="@../fish.css" text="Kategoria 1" />
-            <Button id="kategoria" layoutX="32.0" layoutY="231.0" mnemonicParsing="false" stylesheets="@../fish.css" text="Kategoria 2" />
-            <Button id="kategoria" layoutX="32.0" layoutY="269.0" mnemonicParsing="false" stylesheets="@../fish.css" text="Kategoria 3" />
+            <Button id="menu" mnemonicParsing="false" onAction="#OnAddButtonClicked" stylesheets="@../fish.css" text="Dodaj" />
+            <Label text="Szybkie Menu">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+            <Button id="kategoria" fx:id="quickCat1" mnemonicParsing="false" stylesheets="@../fish.css" text="Kategoria 1" />
+            <Button id="kategoria" fx:id="quickCat2" layoutX="32.0" layoutY="231.0" mnemonicParsing="false" stylesheets="@../fish.css" text="Kategoria 2" />
+            <Button id="kategoria" fx:id="quickCat3" layoutX="32.0" layoutY="269.0" mnemonicParsing="false" stylesheets="@../fish.css" text="Kategoria 3" />
+            <Button id="menu" mnemonicParsing="false" stylesheets="@../fish.css" text="Zmień" />
             <Region prefHeight="200.0" prefWidth="200.0" />
             <ToggleButton fx:id="Music" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#OnMusicButtonClicked" stylesheets="@../fish.css" text="Muzyka" />
             <MediaView fitHeight="50.0" fitWidth="50.0">
