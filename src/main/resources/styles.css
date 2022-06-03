@@ -1,6 +1,12 @@
 #custombutton {
-	-fx-background-color: #FFFF88; 
-	-fx-text-fill: #9999FF;  
-	-fx-border-color: black;
-	-fx-border-width: 3 3 3 3;
+	 -fx-padding: 15px 25px;
+	 -fx-font-size: 24px;
+	 -fx-cursor: hand;
+	 -fx-text-fill: white;
+	 -fx-background-color: #FAE241;
+	 -fx-border-radius: 15px;
+	 -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
+
+#custombutton:hover {-fx-background-color: #CD9E13}
+

@@ -63,7 +63,8 @@ public class FishesScreenController {
     Fish currentFish;
     FishList fishList;
 
-    public Stage getStage() {
+    @SuppressWarnings("exports")
+	public Stage getStage() {
         return stage;
     }
 
@@ -72,7 +73,7 @@ public class FishesScreenController {
         currentFish = null;
     }
 
-    public void switchScene(ActionEvent event) throws IOException {
+    public void switchScene(@SuppressWarnings("exports") ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/fxml/fish.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

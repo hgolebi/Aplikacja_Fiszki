@@ -1,14 +1,20 @@
 package com.pap.fishes.papfishes;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -51,6 +57,11 @@ public class Main extends Application {
 	public void start(Stage stage) {
 //		 Stage stage = new Stage();
 //
+		stage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue)
+                stage.setMaximized(false);
+        });
+		
 		String fileName = "/water.mp3";
 		mp = getMediaPlayer(fileName);
 		mp.play();
@@ -61,10 +72,10 @@ public class Main extends Application {
 		stage.setTitle("FISHES");
 		
 		
-		
 		AnchorPane root1 = new AnchorPane();
 		StackPane stackPane = new StackPane();
-		Scene scene1 = new Scene(stackPane, 600, 600, Color.WHITE);
+		stackPane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		Scene scene1 = new Scene(stackPane, 100, 100, Color.WHITE);
 		
 		scene1.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm());
 		
@@ -77,7 +88,7 @@ public class Main extends Application {
 		
 // FILL IN THE OPENING SCENE (moja)
 		
-		 stage.setResizable(true);
+		stage.setResizable(true);
 		stage.setHeight(800);
 		stage.setWidth(800);
 		
@@ -86,6 +97,7 @@ public class Main extends Application {
 		
 		
 		Text Header = new Text("FISHES");
+		Header.setStyle("-fx-font-family: arial; -fx-font-size: 50; -fx-fill: #124DCC;");
 
 		Header.setFill(Color.BLACK);
 		Header.setFont(Font.font("Times New Roman", 25));
@@ -102,11 +114,11 @@ public class Main extends Application {
 //		root1.getChildren().add(line);
 		
 		Rectangle HeaderRectangle = new Rectangle();
-		HeaderRectangle.setWidth(300);
+		HeaderRectangle.setWidth(500);
 		HeaderRectangle.setHeight(100);
-		HeaderRectangle.setStrokeWidth(5);
+		HeaderRectangle.setStrokeWidth(2);
 		HeaderRectangle.setFill(Color.web("#cce5ff",1.0));
-		HeaderRectangle.setStroke(Color.BLACK);
+		HeaderRectangle.setStroke(Color.rgb(225, 147, 21));
 		
 		
 		StackPane stack = new StackPane();
@@ -117,7 +129,7 @@ public class Main extends Application {
 		
 		Image image = new Image("FISH2.png");
 		ImageView imageView2 = new ImageView(image);
-		imageView2.setFitWidth(50);
+		imageView2.setFitWidth(100);
 		imageView2.setPreserveRatio(true);
 		
 		
@@ -125,6 +137,7 @@ public class Main extends Application {
 		
 		Button btn1 = new Button("PLAY");
 		btn1.setId("custombutton");
+		btn1.setPrefWidth(250);
 		// btn1.setOnAction(e -> stage.setScene(scene2)); // zmiana sceny przyciskiem!!!!!
 		
 		EventHandler<ActionEvent> event = e -> {
@@ -149,8 +162,8 @@ public class Main extends Application {
 		VBox TopBox = new VBox();
 		HBox BottomBox = new HBox();
 		
-		TopBox.getChildren().add(imageView1);
 		TopBox.getChildren().add(stack);
+		TopBox.getChildren().add(imageView1);
 		
 		BottomBox.getChildren().add(btn1);
 		BottomBox.getChildren().add(imageView2);
@@ -160,7 +173,7 @@ public class Main extends Application {
 		root1.getChildren().add(TopBox);
 		AnchorPane.setTopAnchor(TopBox, 10.0);
 		root1.getChildren().add(BottomBox);
-		AnchorPane.setBottomAnchor(BottomBox, 1.0);
+		AnchorPane.setBottomAnchor(BottomBox, 100.0);
 		
 		stackPane.getChildren().add(root1);
 		StackPane.setAlignment(root1, Pos.CENTER);
