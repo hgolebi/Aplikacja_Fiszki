@@ -41,6 +41,7 @@ public class Main extends Application {
 	}
 
 	MediaPlayer mediaPlayer;
+	@SuppressWarnings("exports")
 	public MediaPlayer getMediaPlayer(String fileName) {
 
 		Media media = new Media(Objects.requireNonNull(getClass().getResource(fileName)).toExternalForm());
@@ -54,7 +55,7 @@ public class Main extends Application {
 	}
 
 	@Override
-	public void start(Stage stage) {
+	public void start(@SuppressWarnings("exports") Stage stage) {
 //		 Stage stage = new Stage();
 //
 		stage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
