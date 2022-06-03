@@ -79,7 +79,7 @@ public class FishesScreenController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setMinHeight(950);
-        stage.setMinWidth(701);
+        stage.setMinWidth(720);
         stage.show();
     }
 
@@ -109,7 +109,7 @@ public class FishesScreenController {
             category = currentFish.getCategory();
         }
         term_label.setText(term);
-        term_label.setFont(Font.font("System", FontWeight.BOLD, 40));
+        term_label.setFont(Font.font("System", FontWeight.NORMAL, 40));
         category_label.setText(category);
         if (fish_button.isSelected())
             fish_button.setSelected(false);
@@ -117,7 +117,7 @@ public class FishesScreenController {
         
         if (caller2 == true)
         {
-            FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), term_label);
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), term_label);
             fadeOut.setFromValue(0.0);
             fadeOut.setToValue(1.0);
             fadeOut.play();
@@ -125,7 +125,7 @@ public class FishesScreenController {
         
         if (caller == true)
         {
-        	FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(1), category_label);
+        	FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(0.5), category_label);
             fadeOut2.setFromValue(0.0);
             fadeOut2.setToValue(1.0);
             fadeOut2.play();
@@ -203,7 +203,7 @@ public class FishesScreenController {
 
         fishList = fishList.getRepeatList();
         currentFish = fishList.getCurrentFish();
-        displayFishFront(false, false);
+        displayFishFront(true, true);
         fishList.setAllRepeat(false);
         need_repeat_checkbox.setSelected(false);
         back_button.setVisible(fishList.hasSourceList());
@@ -211,7 +211,7 @@ public class FishesScreenController {
     public void OnBackButtonClicked(){
         fishList = fishList.getSourceList();
         currentFish = fishList.getCurrentFish();
-        displayFishFront(false, true);
+        displayFishFront(true, true);
         fishList.setAllRepeat(false);
         need_repeat_checkbox.setSelected(false);
         back_button.setVisible(fishList.hasSourceList());
