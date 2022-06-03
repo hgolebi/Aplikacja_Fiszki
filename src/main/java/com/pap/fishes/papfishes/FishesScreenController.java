@@ -235,10 +235,9 @@ public class FishesScreenController {
         searchWindow.setScene(searchScene);
         searchWindow.show();
     }
-    public void OnWyszukajButtonClicked() {
 
 
-    }
+
     public void OnEditButtonClicked(){
         try {
             final Stage searchWindow = new Stage();

@@ -16,9 +16,10 @@ public class DbConnector {
         Connection c = null;
         try {
             c = DriverManager.getConnection(URL, username, password);
-            System.out.println("Udalo sie!");
+//            System.out.println("Udalo sie!");
         } catch (SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            Main.dbErrorWindow();
         }
         return c;
     }

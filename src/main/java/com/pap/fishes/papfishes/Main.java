@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -15,9 +16,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -42,7 +45,8 @@ public class Main extends Application {
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		return mediaPlayer;
 	}
-	
+
+
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
@@ -185,5 +189,19 @@ public class Main extends Application {
 		stage.show();
 
 	}
-
+	public static void dbErrorWindow(){
+		final Stage errorWindow = new Stage();
+		errorWindow.initModality(Modality.APPLICATION_MODAL);
+		errorWindow.setWidth(500);
+		errorWindow.setHeight(200);
+		errorWindow.setResizable(false);
+		errorWindow.setTitle("Błąd");
+		Label errorMsg = new Label("Nie można się połączyć z bazą danych.\nSprawdź połącznie sieciowe.");
+		errorMsg.setFont(Font.font(20));
+		errorMsg.setTextFill(Paint.valueOf("#ff0000"));
+		errorMsg.setAlignment(Pos.CENTER);
+		Scene errorScene = new Scene(errorMsg);
+		errorWindow.setScene(errorScene);
+		errorWindow.show();
+	}
 }
