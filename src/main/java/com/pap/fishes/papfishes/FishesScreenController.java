@@ -30,8 +30,6 @@ public class FishesScreenController {
     @FXML
     Label category_label;
     @FXML
-    Button ucz_sie_button;
-    @FXML
     ToggleButton fish_button;
     @FXML
     Button right_swipe_button;
@@ -84,6 +82,20 @@ public class FishesScreenController {
         stage.show();
     }
 
+    public void initialize() {
+        ObservableList<String> all_categories = FXCollections.observableList(QuerySender.getAllCategories());
+        if (all_categories.size() > 0) {
+            quickCat1.setText(all_categories.get(0));
+        }
+        if (all_categories.size() > 1) {
+            quickCat2.setText(all_categories.get(1));
+        }
+        if (all_categories.size() > 2) {
+            quickCat3.setText(all_categories.get(2));
+        }
+        OnUczSieButtonClicked();
+    }
+
     public void displayFishFront(){
         String term;
         String category;
@@ -132,7 +144,6 @@ public class FishesScreenController {
 
         }
         displayFishFront();
-        ucz_sie_button.setVisible(false);
         left_swipe_button.setVisible(true);
         right_swipe_button.setVisible(true);
         need_repeat_checkbox.setVisible(true);
