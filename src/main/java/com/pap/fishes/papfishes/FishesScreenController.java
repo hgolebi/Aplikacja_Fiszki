@@ -1,5 +1,7 @@
 package com.pap.fishes.papfishes;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -48,6 +51,12 @@ public class FishesScreenController {
     Label no_fishes_found_label;
     @FXML
     TextField search_text_field;
+    @FXML
+    Button quickCat1;
+    @FXML
+    Button quickCat2;
+    @FXML
+    Button quickCat3;
 
 
     private Stage stage;
@@ -63,7 +72,6 @@ public class FishesScreenController {
     public FishesScreenController(){
         fishList = new FishList(QuerySender.getAllFishes());
         currentFish = null;
-
     }
 
     public void switchScene(ActionEvent event) throws IOException {
@@ -219,5 +227,108 @@ public class FishesScreenController {
     public void OnWyszukajButtonClicked() {
 
 
+    }
+    public void OnEditButtonClicked(){
+        try {
+            final Stage searchWindow = new Stage();
+            searchWindow.initModality(Modality.APPLICATION_MODAL);
+            searchWindow.initOwner(stage);
+            VBox searchVbox = FXMLLoader.load(getClass().getResource("/fxml/fish_edit.fxml"));
+            Scene dialogScene = new Scene(searchVbox, 300, 200);
+            searchWindow.setScene(dialogScene);
+            searchWindow.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void OnAddButtonClicked(){
+        try {
+            final Stage searchWindow = new Stage();
+            searchWindow.initModality(Modality.APPLICATION_MODAL);
+            searchWindow.initOwner(stage);
+            VBox searchVbox = FXMLLoader.load(getClass().getResource("/fxml/fish_add.fxml"));
+            Scene dialogScene = new Scene(searchVbox, 300, 200);
+            searchWindow.setScene(dialogScene);
+            searchWindow.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void OnChangeButtonClicked()throws IOException {
+
+        final Stage searchWindow = new Stage();
+        searchWindow.initModality(Modality.APPLICATION_MODAL);
+        searchWindow.initOwner(stage);
+        ObservableList<String> all_categories = FXCollections.observableList(QuerySender.getAllCategories());
+
+        Label cat1 = new Label("1. Kategoria");
+        Label cat2 = new Label("2. Kategoria");
+        Label cat3 = new Label("3. Kategoria");
+
+        ChoiceBox<String> choice1 = new ChoiceBox<String>(all_categories);
+        ChoiceBox<String> choice2 = new ChoiceBox<String>(all_categories);
+        ChoiceBox<String> choice3 = new ChoiceBox<String>(all_categories);
+        choice1.setValue(quickCat1.getText());
+        choice2.setValue(quickCat2.getText());
+        choice3.setValue(quickCat3.getText());
+
+        choice1.setOnAction(event -> {
+            quickCat1.setText(choice1.getValue());
+        });
+        choice2.setOnAction(event -> {
+            quickCat2.setText(choice2.getValue());
+        });
+        choice3.setOnAction(event -> {
+            quickCat3.setText(choice3.getValue());
+        });
+
+
+        HBox changeHBox = new HBox();
+        VBox cat1VBox = new VBox();
+        VBox cat2VBox = new VBox();
+        VBox cat3VBox = new VBox();
+
+        cat1VBox.getChildren().add(cat1);
+        cat1VBox.getChildren().add(choice1);
+        changeHBox.getChildren().add(cat1VBox);
+        cat2VBox.getChildren().add(cat2);
+        cat2VBox.getChildren().add(choice2);
+        changeHBox.getChildren().add(cat2VBox);
+        cat3VBox.getChildren().add(cat3);
+        cat3VBox.getChildren().add(choice3);
+        changeHBox.getChildren().add(cat3VBox);
+
+        changeHBox.setAlignment(Pos.CENTER);
+        Scene searchScene = new Scene(changeHBox, 400, 100);
+        searchScene.getStylesheets().add(getClass().getResource("/fish.css").toExternalForm());
+        searchWindow.setScene(searchScene);
+        searchWindow.show();
+    }
+    public void OnQuick1() {
+        if (!quickCat1.getText().equals("Kategoria 1")) {
+            fishList = new FishList(QuerySender.getFishesFromCategory(quickCat1.getText()));
+            currentFish = fishList.getCurrentFish();
+            displayFishFront();
+        }
+    }
+    public void OnQuick2() {
+        if (!quickCat2.getText().equals("Kategoria 2")) {
+            fishList = new FishList(QuerySender.getFishesFromCategory(quickCat2.getText()));
+            currentFish = fishList.getCurrentFish();
+            displayFishFront();
+        }
+    }
+    public void OnQuick3() {
+        if (!quickCat3.getText().equals("Kategoria 3")) {
+            fishList = new FishList(QuerySender.getFishesFromCategory(quickCat3.getText()));
+            currentFish = fishList.getCurrentFish();
+            displayFishFront();
+        }
+    }
+    public void OnAll() {
+        fishList = new FishList(QuerySender.getAllFishes());
+        currentFish = fishList.getCurrentFish();
+        displayFishFront();
     }
 }
