@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -61,6 +63,7 @@ public class FishesScreenController {
     public FishesScreenController(){
         fishList = new FishList(QuerySender.getAllFishes());
         currentFish = null;
+
     }
 
     public void switchScene(ActionEvent event) throws IOException {
@@ -69,6 +72,7 @@ public class FishesScreenController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setMinHeight(950);
+        stage.setMinWidth(701);
         stage.show();
     }
 
@@ -84,6 +88,7 @@ public class FishesScreenController {
             category = currentFish.getCategory();
         }
         term_label.setText(term);
+        term_label.setFont(Font.font("System", FontWeight.BOLD, 40));
         category_label.setText(category);
         if (fish_button.isSelected())
             fish_button.setSelected(false);
@@ -101,6 +106,7 @@ public class FishesScreenController {
             category = currentFish.getCategory();
         }
         term_label.setText(definition);
+        term_label.setFont(Font.font("System", FontWeight.NORMAL, 30));
         category_label.setText(category);
         if (!fish_button.isSelected())
             fish_button.setSelected(true);
