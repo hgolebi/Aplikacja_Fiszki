@@ -9,4 +9,4 @@ Wojciech Grunwald
 INSTRUKCJA URUCHOMIENIA NA SYSTEMIE LINUX:
 Należy w terminalu przejść do katalogu projektu
 a następnie uruchomić plik 'Linux_run.sh' za pomocą komendy:
--bash Linux_run.sh
+bash Linux_run.sh
