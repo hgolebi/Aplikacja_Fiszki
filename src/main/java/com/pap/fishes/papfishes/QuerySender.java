@@ -52,7 +52,7 @@ public class QuerySender {
     public static Vector<String> getAllCategories(){
         Vector<String> vec = new Vector<>();
         try {
-            ResultSet result = QuerySender.select("SELECT UNIQUE category FROM Fishes");
+            ResultSet result = QuerySender.select("SELECT DISTINCT category FROM Fishes");
             while (result.next()) {
                 vec.add(result.getString(1));
             }

@@ -122,10 +122,10 @@
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Label>
-            <Button id="kategoria" fx:id="quickCat1" mnemonicParsing="false" stylesheets="@../fish.css" text="Kategoria 1" />
-            <Button id="kategoria" fx:id="quickCat2" layoutX="32.0" layoutY="231.0" mnemonicParsing="false" stylesheets="@../fish.css" text="Kategoria 2" />
-            <Button id="kategoria" fx:id="quickCat3" layoutX="32.0" layoutY="269.0" mnemonicParsing="false" stylesheets="@../fish.css" text="Kategoria 3" />
-            <Button id="menu" mnemonicParsing="false" stylesheets="@../fish.css" text="Zmień" />
+            <Button id="kategoria" fx:id="quickCat1" mnemonicParsing="false" onAction="#OnQuick1" stylesheets="@../fish.css" text="Kategoria 1" />
+            <Button id="kategoria" fx:id="quickCat2" layoutX="32.0" layoutY="231.0" mnemonicParsing="false" onAction="#OnQuick2" stylesheets="@../fish.css" text="Kategoria 2" />
+            <Button id="kategoria" fx:id="quickCat3" layoutX="32.0" layoutY="269.0" mnemonicParsing="false" onAction="#OnQuick3" stylesheets="@../fish.css" text="Kategoria 3" />
+            <Button id="menu" mnemonicParsing="false" onAction="#OnChangeButtonClicked" stylesheets="@../fish.css" text="Zmień" />
             <Region prefHeight="200.0" prefWidth="200.0" />
             <ToggleButton fx:id="Music" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#OnMusicButtonClicked" stylesheets="@../fish.css" text="Muzyka" />
             <MediaView fitHeight="50.0" fitWidth="50.0">
