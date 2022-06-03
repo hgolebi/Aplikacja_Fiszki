@@ -319,4 +319,9 @@ public class FishesScreenController {
             displayFishFront();
         }
     }
+    public void OnAll() {
+        fishList = new FishList(QuerySender.getAllFishes());
+        currentFish = fishList.getCurrentFish();
+        displayFishFront();
+    }
 }
