@@ -60,8 +60,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(@SuppressWarnings("exports") Stage stage) {
-//		 Stage stage = new Stage();
-//
+
 		stage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue)
                 stage.setMaximized(false);
@@ -70,7 +69,7 @@ public class Main extends Application {
 		String fileName = "/water.mp3";
 		mp = getMediaPlayer(fileName);
 		mp.play();
-//		muzyka
+
 //		 setting an icon of the program
 		Image icon = new Image("FISH.png");
 		stage.getIcons().add(icon);
@@ -82,16 +81,9 @@ public class Main extends Application {
 		stackPane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 		Scene scene1 = new Scene(stackPane, 100, 100, Color.WHITE);
 		
-		scene1.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm());
+		scene1.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm());		
 		
-		//TO JEST TWOJA SCENA BARTEK, do tej sceny sie dostajemy przyciskiem z pierwszej sceny
-//		GridPane playScene = FXMLLoader.load(getClass().getResource("/fxml/fish.fxml"));
-//		Scene scene2 = new Scene(playScene);
-
-
-		
-		
-// FILL IN THE OPENING SCENE (moja)
+// FILL IN THE OPENING SCENE 
 		
 		stage.setResizable(true);
 		stage.setHeight(800);
@@ -107,16 +99,6 @@ public class Main extends Application {
 		Header.setFill(Color.BLACK);
 		Header.setFont(Font.font("Times New Roman", 25));
 		
-//		Line line = new Line();
-//		line.setStartX(200);
-//		line.setStartY(200);
-//		line.setEndX(500);
-//		line.setEndY(200);
-//		line.setStrokeWidth(5);
-//		line.setStroke(Color.RED);
-//		line.setOpacity(0.5);
-//		line.setRotate(45);
-//		root1.getChildren().add(line);
 		
 		Rectangle HeaderRectangle = new Rectangle();
 		HeaderRectangle.setWidth(500);
@@ -143,16 +125,8 @@ public class Main extends Application {
 		Button btn1 = new Button("PLAY");
 		btn1.setId("custombutton");
 		btn1.setPrefWidth(250);
-		// btn1.setOnAction(e -> stage.setScene(scene2)); // zmiana sceny przyciskiem!!!!!
 		
 		EventHandler<ActionEvent> event = e -> {
-//                stage.setScene(scene2);
-//
-//                stage.setMaxWidth(900);
-//        		stage.setMaxHeight(900);
-//
-//        		stage.setMinWidth(500);
-//        		stage.setMinHeight(600);
 			FishesScreenController fsc = new FishesScreenController();
 			try {
 				fsc.switchScene(e);
@@ -187,17 +161,6 @@ public class Main extends Application {
 		TopBox.prefWidthProperty().bind(stackPane.widthProperty());
 		BottomBox.setAlignment(Pos.BOTTOM_CENTER);
 		BottomBox.prefWidthProperty().bind(stackPane.widthProperty());
-		
-	
-// FILL IN THE GAME SCENE - tutaj pisz Bartek swoją scene, ja dałem przykładowo prostokąt, żeby
-		// zobaczyć, czy działa
-		
-//		Rectangle rect = new Rectangle(50, 50);
-//		root2.getChildren().add(rect);
-		
-		
-		
-		/////////////
 		
 		stage.setScene(scene1);
 		stage.show();
